@@ -9,9 +9,9 @@ class TextAnalyzer:
     def contains_digit(self, text: str) -> bool:
         return any(char.isdigit() for char in text)
 
-    def has_multiple_words(self, text: str) -> bool:
-        return len(text.strip().split()) > 1
+    def word_count(self, text: str) -> int:
+        return len(text.strip().split())
 
     def is_palindrome(self, text: str) -> bool:
-        normalized = "".join(c.lower() for c in text if c.isalnum())
+        normalized = "".join(char.lower() for char in text if char.isalnum())
         return normalized != "" and normalized == normalized[::-1]
