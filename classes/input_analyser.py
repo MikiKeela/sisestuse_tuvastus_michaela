@@ -2,13 +2,12 @@ class InputAnalyzer:
     def analyze(self, user_input: str) -> str:
         results = []
 #kontroll analüüs
-        # näita mida sisestati
+
         results.append(f"Sisestati: {repr(user_input)}")
         results.append("-" * 40)
 
         stripped = user_input.strip()
-
-        #numbri analüüs
+#Numbri analüüs
         results.append("Numbri kontroll:")
         number = self._get_number(stripped)
 
@@ -47,8 +46,7 @@ class InputAnalyzer:
             else:
                 results.append("Positiivne või negatiivne: null")
 
-
-        #Teksti analüüs
+#Teksti analüüs
         results.append("")
         results.append("Teksti kontroll:")
 
