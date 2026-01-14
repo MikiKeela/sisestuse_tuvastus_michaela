@@ -1,89 +1,44 @@
+from classes.number_analyzer import NumberAnalyzer
+from classes.text_analyzer import TextAnalyzer
+
+
 class InputAnalyzer:
+
+    def __init__(self):
+        self.num = NumberAnalyzer()
+        self.txt = TextAnalyzer()
+
+    def _yes_no(self, value: bool) -> str:
+        return "jah" if value else "ei"
+
     def analyze(self, user_input: str) -> str:
         results = []
-#kontroll analüüs
-
-        results.append(f"Sisestati: {repr(user_input)}")
+        results.append(f"Sisestus: {repr(user_input)}")
         results.append("-" * 40)
 
-        stripped = user_input.strip()
-#Numbri analüüs
-        results.append("Numbri kontroll:")
-        number = self._get_number(stripped)
+        number = self.num.is_number(user_input.strip())
 
+        results.append("NUMBRID:")
         if number is None:
-            results.append("Paaris või paaritu: ei ole number")
-            results.append("Positiivne või negatiivne: ei ole number")
-            results.append("Täisarv või murdarv: ei ole number")
-            results.append("Jagub kolmega või ei jagu: ei ole number")
-            results.append("Ümmargune number või mitte: ei ole number")
+            results.append("Paarisarv: ei")
+            results.append("Positiivne: ei")
+            results.append("Täisarv: ei")
+            results.append("Jagub kolmega: ei")
+            results.append("Ümmargune number: ei")
         else:
-            if number.is_integer():
-                results.append("Täisarv või murdarv: täisarv")
-                int_number = int(number)
+            results.append(f"Paarisarv: {self._yes_no(self.num.is_even(number))}")
+            results.append(f"Positiivne: {self._yes_no(self.num.is_positive(number))}")
+            results.append(f"Täisarv: {self._yes_no(self.num.is_integer(number))}")
+            results.append(f"Jagub kolmega: {self._yes_no(self.num.divisible_by_three(number))}")
+            results.append(f"Ümmargune number: {self._yes_no(self.num.is_round_number(number))}")
 
-                if int_number % 2 == 0:
-                    results.append("Paaris või paaritu: paaris")
-                else:
-                    results.append("Paaris või paaritu: paaritu")
-                if int_number % 3 == 0:
-                    results.append("Jagub kolmega või ei jagu: jagub kolmega")
-                else:
-                    results.append("Jagub kolmega või ei jagu: ei jagu kolmega")
-                if abs(int_number) % 10 in (0, 5):
-                    results.append("Ümmargune number või mitte: ümmargune")
-                else:
-                    results.append("Ümmargune number või mitte: ei ole ümmargune")
-            else:
-                results.append("Täisarv või murdarv: murdarv")
-                results.append("Paaris või paaritu: ei ole paaris")
-                results.append("Jagub kolmega või ei jagu: ei jagu kolmega")
-                results.append("Ümmargune number või mitte: ei ole ümmargune")
-            if number > 0:
-                results.append("Positiivne või negatiivne: positiivne")
-            elif number < 0:
-                results.append("Positiivne või negatiivne: negatiivne")
-            else:
-                results.append("Positiivne või negatiivne: null")
-
-#Teksti analüüs
         results.append("")
-        results.append("Teksti kontroll:")
+        results.append("TEKST:")
 
-        if stripped == "":
-            results.append("Tühi või mitte: tühi")
-        else:
-            results.append("Tühi või mitte: ei ole tühi")
-
-        if user_input and user_input[0].isalpha() and user_input[0].isupper():
-            results.append("Algab suure tähega või mitte: algab suure tähega")
-        else:
-            results.append("Algab suure tähega või mitte: ei alga suure tähega")
-
-        if any(char.isdigit() for char in user_input):
-            results.append("Sisaldab numbrit või mitte: sisaldab numbrit")
-        else:
-            results.append("Sisaldab numbrit või mitte: ei sisalda numbrit")
-
-        words = stripped.split()
-        if len(words) == 0:
-            results.append("Üks või mitu sõna: 0 sõna")
-        elif len(words) == 1:
-            results.append("Üks või mitu sõna: üks sõna")
-        else:
-            results.append(f"Üks või mitu sõna: mitu sõna ({len(words)})")
-
-        normalized = "".join(char.lower() for char in user_input if char.isalnum())
-        if normalized and normalized == normalized[::-1]:
-            results.append("Palindroom või mitte: palindroom")
-        else:
-            results.append("Palindroom või mitte: ei ole palindroom")
+        results.append(f"Tühi: {self._yes_no(self.txt.is_empty(user_input))}")
+        results.append(f"Algab suure tähega: {self._yes_no(self.txt.starts_with_uppercase(user_input))}")
+        results.append(f"Sisaldab numbrit: {self._yes_no(self.txt.contains_digit(user_input))}")
+        results.append(f"Mitu sõna: {self._yes_no(self.txt.has_multiple_words(user_input))}")
+        results.append(f"Palindroom: {self._yes_no(self.txt.is_palindrome(user_input))}")
 
         return "\n".join(results)
-
-    def _get_number(self, value: str):
-        try:
-            return float(value)
-        except ValueError:
-            return None
-
