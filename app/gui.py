@@ -30,7 +30,6 @@ class AppGUI:
         self.entry.grid(row=1, column=0, sticky="ew", pady=(6, 10))
         self.entry.focus_set()
 
-        # Nupud
         btn_frame = ttk.Frame(main)
         btn_frame.grid(row=2, column=0, sticky="w", pady=(0, 10))
 
@@ -40,14 +39,11 @@ class AppGUI:
         self.btn_clear = ttk.Button(btn_frame, text="Puhasta", command=self.on_clear)
         self.btn_clear.grid(row=0, column=1)
 
-        # Text (tulemused)
         self.text = tk.Text(main, height=18, wrap="word")
         self.text.grid(row=3, column=0, sticky="nsew")
 
-        # Tee Text kirjutuskaitstuks
         self._set_text_readonly(True)
 
-        # Enter klahv = Näita
         self.root.bind("<Return>", lambda event: self.on_show())
 
     def _set_text_readonly(self, readonly: bool):
@@ -65,7 +61,6 @@ class AppGUI:
         result = self.analyzer.analyze(user_input)
         self._write_text(result)
 
-        # Entry automaatselt tühjaks
         self.entry.delete(0, tk.END)
         self.entry.focus_set()
 
