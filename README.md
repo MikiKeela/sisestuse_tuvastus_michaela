@@ -1,20 +1,25 @@
-# Sisestuse tuvastus
+# Sisestuse tuvastus (Tkinter)
 
-Python Tkinter GUI rakendus, mis analüüsib kasutaja sisestatud numbrit või teksti ja näitab erinevaid omadusi.
+Lihtne Python Tkinter programm, mis kontrollib kasutaja sisestust.
 
-## Mida näitab:
-- Paaris või paaritu
-- Positiivne või negatiivne
-- Täisarv või murdarv
-- Jagub kolmaga või mitte
-- Ümmargune või mitte
-- Jagub kolmega või mitte
-- Tühi või mitte
-- Algab suure tähega või mitte
-- Sisaldab numbrit või mitte
-- Üks või mitu sõna
-- Palindroom või mitte
+Programm tuvastab, kas sisestus on number või tekst, ja näitab
+vastavad tulemused kujul **jah / ei**.
 
-![img_2.png](Kuvatõmmis.png)
+## Mida programm teeb
 
-![img_3.png](Kuvatõmmis2.png)
+- Näitab alati, kas sisestus on tühi
+- Kui sisestus on number:
+  - paarisarv
+  - positiivne
+  - täisarv
+  - jagub kolmega
+  - ümmargune number
+- Kui sisestus on tekst:
+  - algab suure tähega
+  - sisaldab numbrit
+  - mitu sõna (näitab ka sõnade arvu)
+  - palindroom
+
+## Kuvatõmmised
+![img.png](screenshots/Numbrid.png)
+![img_1.png](screenshots/tekst.png)

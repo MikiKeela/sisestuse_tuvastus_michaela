@@ -1,22 +1,24 @@
 class NumberAnalyzer:
-
-    def is_number(self, value: str):
+    def parse(self, value: str):
+        value = value.strip()
+        if value == "":
+            return None
         try:
             return float(value)
         except ValueError:
             return None
 
-    def is_even(self, number: float) -> bool:
-        return number.is_integer() and int(number) % 2 == 0
+    def is_integer(self, n: float) -> bool:
+        return n.is_integer()
 
-    def is_positive(self, number: float) -> bool:
-        return number > 0
+    def is_even(self, n: float) -> bool:
+        return n.is_integer() and int(n) % 2 == 0
 
-    def is_integer(self, number: float) -> bool:
-        return number.is_integer()
+    def is_positive(self, n: float) -> bool:
+        return n > 0
 
-    def divisible_by_three(self, number: float) -> bool:
-        return number.is_integer() and int(number) % 3 == 0
+    def divisible_by_three(self, n: float) -> bool:
+        return n.is_integer() and int(n) % 3 == 0
 
-    def is_round_number(self, number: float) -> bool:
-        return number.is_integer() and abs(int(number)) % 10 in (0, 5)
+    def is_round_number(self, n: float) -> bool:
+        return n.is_integer() and abs(int(n)) % 10 in (0, 5)
