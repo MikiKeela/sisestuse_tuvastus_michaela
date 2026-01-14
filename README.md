@@ -15,6 +15,6 @@ Python Tkinter GUI rakendus, mis analüüsib kasutaja sisestatud numbrit või te
 - Üks või mitu sõna
 - Palindroom või mitte
 
-![img.png](img.png)
+![img_2.png](Kuvatõmmis.png)
 
-![img_1.png](img_1.png)
+![img_3.png](Kuvatõmmis2.png)
